@@ -42,30 +42,30 @@ export const SingleCall = (id, route) => async dispatch => {
   const Url = `${BASE_URL + route}`;
   try {
     if(route==='book'){
-      dispatch(fromBooks.getBookPending());
+      dispatch(fromBooks.getSingleBookPending());
     } else if (route==='movie') {
-      dispatch(fromMovies.getMoviePending());
+      dispatch(fromMovies.getSingleMoviePending());
     } else if (route==='character'){
-      dispatch(fromCharacters.getCharacterPending());
+      dispatch(fromCharacters.getSingleCharacterPending());
     }
 
     const response = await fetch(`${Url}/${id}`, { mode: 'cors', headers: {'Authorization': `Bearer ${Constants.manifest.extra.APITOKEN}`}});
     const data = await response.json();
     if(route==='book'){
-      dispatch(fromBooks.getBook(data.docs[0]));
+      dispatch(fromBooks.getSingleBook(data.docs[0]));
     } else if (route==='movie') {
-      dispatch(fromMovies.getMovie(data.docs[0]));
+      dispatch(fromMovies.getSingleMovie(data.docs[0]));
     } else if (route==='character'){
-      dispatch(fromCharacters.getCharacter(data.docs[0]));
+      dispatch(fromCharacters.getSingleCharacter(data.docs[0]));
     }
     return data;
   } catch (error) {
     if(route==='book'){
-      dispatch(fromBooks.getBookError(error));
+      dispatch(fromBooks.getSingleBookError(error));
     } else if (route==='movie') {
-      dispatch(fromMovies.getMovieError(error));
+      dispatch(fromMovies.getSingleMovieError(error));
     } else if (route==='character'){
-      dispatch(fromCharacters.getCharacterError(error));
+      dispatch(fromCharacters.getSingleCharacterError(error));
     }   
   }
 };
