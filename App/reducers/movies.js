@@ -10,7 +10,6 @@ const movieReducer = (state = initialStateMovies, action) => {
       return {
         ...state,
         pending: false,
-        next: action.moviesList.next,
         moviesList: action.moviesList.docs,
       };
     case GET_ALL_MOVIES_PENDING:

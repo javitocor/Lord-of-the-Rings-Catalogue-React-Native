@@ -10,7 +10,6 @@ const characterReducer = (state = initialStateCharacters, action) => {
       return {
         ...state,
         pending: false,
-        next: action.charactersList.next,
         charactersList: action.charactersList.docs,
       };
     case GET_ALL_CHARACTERS_PENDING:
