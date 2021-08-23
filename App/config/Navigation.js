@@ -2,7 +2,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import { Ionicons } from '@expo/vector-icons';
+import {Image} from 'react-native';
 import Home from '../screens/Home';
 import Books from '../screens/Books';
 import BookDetail from '../screens/BookDetail';
@@ -16,8 +17,8 @@ const BookStack = createStackNavigator();
 function BookStackScreen() {
   return (
     <BookStack.Navigator>
-      <BookStack.Screen name="Books" component={Books} />
-      <BookStack.Screen name="BookDetail" component={BookDetail} />
+      <BookStack.Screen name="BooksScreen" component={Books} options={{ headerShown: false }} />
+      <BookStack.Screen name="BookDetail" component={BookDetail} options={{ headerShown: false }} />
     </BookStack.Navigator>
   );
 }
@@ -27,8 +28,8 @@ const MovieStack = createStackNavigator();
 function MovieStackScreen() {
   return (
     <MovieStack.Navigator>
-      <MovieStack.Screen name="Movies" component={Movies} />
-      <MovieStack.Screen name="MovieDetail" component={MovieDetail} />
+      <MovieStack.Screen name="MoviesScreen" component={Movies} options={{ headerShown: false }} />
+      <MovieStack.Screen name="MovieDetail" component={MovieDetail} options={{ headerShown: false }} />
     </MovieStack.Navigator>
   );
 }
@@ -38,8 +39,8 @@ const CharacterStack = createStackNavigator();
 function CharacterStackScreen() {
   return (
     <CharacterStack.Navigator>
-      <CharacterStack.Screen name="Characters" component={Characters} />
-      <CharacterStack.Screen name="CharacterDetail" component={CharacterDetail} />
+      <CharacterStack.Screen name="CharactersScreen" component={Characters} options={{ headerShown: false }} />
+      <CharacterStack.Screen name="CharacterDetail" component={CharacterDetail} options={{ headerShown: false }} />
     </CharacterStack.Navigator>
   );
 }
@@ -48,8 +49,31 @@ const Tab = createBottomTabNavigator();
 
 function TabNavigation() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'Home') {
+          iconName = focused ? 'md-home' : 'md-home-outline';
+        } else if (route.name === 'Books') {
+          iconName = focused ? 'md-book' : 'md-book-outline';
+        } else if (route.name === 'Movies') {
+          iconName = focused ? 'md-film' : 'md-film-outline';
+        } else if (route.name === 'Characters') {
+          iconName = focused ? 'people-circle' : 'people-circle-outline';
+        }
+
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: 'yellow',
+      tabBarInactiveTintColor: 'grey',
+      tabBarBackground: () => (
+        <Image resizeMode="stretch" style={{ width: undefined, height: undefined, flex: 1, alignItems:'center', justifyContent:'center' }} source={require('../assets/images/background.jpg')} />
+      ),
+    })}
+    >
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Tab.Screen name="Books" component={BookStackScreen} />
       <Tab.Screen name="Movies" component={MovieStackScreen} />
       <Tab.Screen name="Characters" component={CharacterStackScreen} />
