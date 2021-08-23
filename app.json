@@ -10,6 +10,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "extra": {
+      "APITOKEN": "bwU6jqRLtSiDJy6JGG6S"        
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
