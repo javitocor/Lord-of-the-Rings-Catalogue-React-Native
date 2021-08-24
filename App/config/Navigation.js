@@ -17,8 +17,8 @@ const BookStack = createStackNavigator();
 function BookStackScreen() {
   return (
     <BookStack.Navigator>
-      <BookStack.Screen name="BooksScreen" component={Books} options={{ headerShown: false }} />
-      <BookStack.Screen name="BookDetail" component={BookDetail} options={{ headerShown: false }} />
+      <BookStack.Screen name="BooksScreen" component={Books} />
+      <BookStack.Screen name="BookDetail" component={BookDetail} />
     </BookStack.Navigator>
   );
 }
@@ -28,8 +28,8 @@ const MovieStack = createStackNavigator();
 function MovieStackScreen() {
   return (
     <MovieStack.Navigator>
-      <MovieStack.Screen name="MoviesScreen" component={Movies} options={{ headerShown: false }} />
-      <MovieStack.Screen name="MovieDetail" component={MovieDetail} options={{ headerShown: false }} />
+      <MovieStack.Screen name="MoviesScreen" component={Movies} />
+      <MovieStack.Screen name="MovieDetail" component={MovieDetail} />
     </MovieStack.Navigator>
   );
 }
@@ -39,8 +39,8 @@ const CharacterStack = createStackNavigator();
 function CharacterStackScreen() {
   return (
     <CharacterStack.Navigator>
-      <CharacterStack.Screen name="CharactersScreen" component={Characters} options={{ headerShown: false }} />
-      <CharacterStack.Screen name="CharacterDetail" component={CharacterDetail} options={{ headerShown: false }} />
+      <CharacterStack.Screen name="CharactersScreen" component={Characters} />
+      <CharacterStack.Screen name="CharacterDetail" component={CharacterDetail} />
     </CharacterStack.Navigator>
   );
 }
@@ -74,9 +74,9 @@ function TabNavigation() {
     })}
     >
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Tab.Screen name="Books" component={BookStackScreen} />
-      <Tab.Screen name="Movies" component={MovieStackScreen} />
-      <Tab.Screen name="Characters" component={CharacterStackScreen} />
+      <Tab.Screen name="Books" component={BookStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Movies" component={MovieStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Characters" component={CharacterStackScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

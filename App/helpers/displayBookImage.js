@@ -6,7 +6,8 @@ function displayBookImage(name) {
     return require("../assets/images/books/towers.jpg");
   } if (name === 'The Return Of The King') {
     return require("../assets/images/books/king.jpg");
-  }     
+  }  
+    return require('../assets/images/noimage.png');     
 };
 
 export default displayBookImage;
