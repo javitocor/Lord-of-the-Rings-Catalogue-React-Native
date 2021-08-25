@@ -1,7 +1,7 @@
-function getChapters(chapters, id) {
-  const values = chapters.map(item => item[id]);
+function getChapters(object, id) {
+  const filtered = object.reduce((a, o) => (o.book === id && a.push(o.chapterName), a), []);    
 
-  return values;
+  return filtered;
 }
 
 export default getChapters;
