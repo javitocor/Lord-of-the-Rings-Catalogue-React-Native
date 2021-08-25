@@ -46,3 +46,13 @@ export const GET_ALL_CHARACTERS = 'GET_ALL_CHARACTERS';
 export const GET_ALL_CHARACTERS_PENDING = 'GET_ALL_CHARACTERS_PENDING';
 export const GET_ALL_CHARACTERS_ERROR = 'GET_ALL_CHARACTERS_ERROR';
 
+export const initialStateQuotes = {
+  error: null,
+  pending: false,
+  quotesList: [],
+};
+
+export const GET_ALL_QUOTES = 'GET_ALL_QUOTES';
+export const GET_ALL_QUOTES_PENDING = 'GET_ALL_QUOTES_PENDING';
+export const GET_ALL_QUOTES_ERROR = 'GET_ALL_QUOTES_ERROR';
+

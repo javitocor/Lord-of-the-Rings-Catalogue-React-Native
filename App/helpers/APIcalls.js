@@ -5,6 +5,7 @@ import { BASE_URL } from '../constants/constants';
 import * as fromBooks from '../actions/books';
 import * as fromMovies from '../actions/movies';
 import * as fromCharacters from '../actions/characters';
+import * as fromQuotes from '../actions/quotes';
 
 export const AllCall = (route) => async dispatch => {
   const Url = `${BASE_URL + route}`;
@@ -18,7 +19,9 @@ export const AllCall = (route) => async dispatch => {
       dispatch(fromCharacters.getAllCharactersPending());
     } else if (route==='chapter'){
       dispatch(fromBooks.getAllChaptersPending());
-    }        
+    } else if (route==='quote'){
+      dispatch(fromQuotes.getAllQuotesPending());
+    }          
 
     const response = await fetch(Url, { mode: 'cors', headers: {'Authorization': `Bearer ${Constants.manifest.extra.APITOKEN}`}});
     const data = await response.json();
@@ -30,6 +33,8 @@ export const AllCall = (route) => async dispatch => {
       dispatch(fromCharacters.getAllCharacters(data));
     } else if (route==='chapter'){
       dispatch(fromBooks.getAllChapters(data));
+    } else if (route==='quote'){
+      dispatch(fromQuotes.getAllQuotes(data));
     }     
     return data;
   } catch (error) {
@@ -41,6 +46,8 @@ export const AllCall = (route) => async dispatch => {
       dispatch(fromCharacters.getAllCharactersError(error));
     } else if (route==='chapter'){
       dispatch(fromBooks.getAllChaptersError(error));
+    } else if (route==='quote'){
+      dispatch(fromQuotes.getAllQuotesError(error));
     }    
   }
 };
