@@ -8,3 +8,5 @@ function getQuotes(object, section, id) {
 }
 
 export default getQuotes;
+
+

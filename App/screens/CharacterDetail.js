@@ -77,7 +77,8 @@ const CharacterDetail = (props) => {
        const data = await getSingleCharacter('character', id);
        setKeys(getKeys(data.docs[0]));
        const quotes = await getAllQuotes('quote');
-       setQuote(getQuotes(quotes, 'character', id))
+       console.log(quotes)
+       setQuote(getQuotes(quotes.docs, 'character', id))
       } catch (error) {
         console.log(error)
       }           

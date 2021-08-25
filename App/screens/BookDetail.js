@@ -9,7 +9,8 @@ import {
   Dimensions,
   Text,
   Image,
-  FlatList
+  FlatList,
+  ScrollView
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -40,10 +41,11 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
   content: {
+    flex:1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent:'center',
-    marginTop: 20
+    marginTop: 2
   },
   text: {
     fontWeight: 'bold',
@@ -53,10 +55,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
+    flex:1,
     width: '100%',
     height: undefined,
     aspectRatio: 1,
-    marginBottom: 15
+    marginBottom: 10
+  },
+  flatContainer:{
+    height: screen.height * 0.2
+  },
+  chapterText: {
+    color: colors.white,
+    fontSize: 18,
+    textAlign: 'center',
+    marginBottom: 10,
+    textDecorationLine: 'underline',
+    textDecorationColor: colors.yellow,
   },
 });
 
@@ -81,20 +95,29 @@ const BookDetail = (props) => {
   
   return (
     <View style={styles.container}>
-      <ImageBackground source={require('../assets/images/background5.jpg')} resizeMode="cover" style={styles.bgimage}>
-        {props.books.pending ? (
-          <ActivityIndicator color={colors.white} size="large" style={styles.waiting} />
+      <ScrollView>
+        <ImageBackground source={require('../assets/images/background5.jpg')} resizeMode="cover" style={styles.bgimage}>
+          {props.books.pending ? (
+            <ActivityIndicator color={colors.white} size="large" style={styles.waiting} />
           ):(
             <View style={styles.content}>
               <Text style={styles.text}>{book.name}</Text>
               <Image source={displayBookImage(book.name)} resizeMode="contain" style={styles.image} />
-              <FlatList                
-                data={selectedChapters}
-                renderItem={({ item }) => (<BookChapters key={item} item={item} />)}
-              />
+              <View style={styles.flatContainer}>
+                <Text style={styles.chapterText}>Chapters</Text>
+                <FlatList                
+                  data={selectedChapters}
+                  renderItem={({ item }) => (<BookChapters key={item} item={item} />)}
+                  style={{
+                    flexGrow: 0,
+                    height: 30
+                  }}
+                />
+              </View>
             </View>
           )}
-      </ImageBackground>
+        </ImageBackground>
+      </ScrollView>
     </View>    
   );
 };

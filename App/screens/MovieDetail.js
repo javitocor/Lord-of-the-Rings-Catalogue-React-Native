@@ -78,13 +78,15 @@ const MovieDetail = (props) => {
        const data = await getSingleMovie('movie', id);
        setKeys(getKeys(data.docs[0]));
        const quotes = await getAllQuotes('quote');
-       setQuote(getQuotes(quotes, 'movie', id))
+       const selected = await getQuotes(quotes.docs, 'movie', id);
+       console.log(selected)
+       setQuote(selected)
       } catch (error) {
         console.log(error)
       }           
     })();  
   },[]);
-
+  
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../assets/images/background2.jpg')} resizeMode="cover" style={styles.bgimage}>
