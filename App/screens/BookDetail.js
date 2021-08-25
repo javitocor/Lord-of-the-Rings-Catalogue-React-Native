@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/forbid-prop-types */
 import React, { useState, useEffect } from 'react';
 import {
@@ -70,14 +71,14 @@ const BookDetail = (props) => {
       try {
        const data = await getSingleBook('book', id);
        const dataChapters = await getAllChapters('chapter');
-       const selected = await getChapters(dataChapters.docs, id)
+       const selected = await getChapters(dataChapters.docs, id);
        setSelectedChapters(selected);
       } catch (error) {
         console.log(error)
       }           
     })();  
   },[]);
-
+  
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../assets/images/background5.jpg')} resizeMode="cover" style={styles.bgimage}>
