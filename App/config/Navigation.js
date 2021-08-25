@@ -11,14 +11,17 @@ import Movies from '../screens/Movies';
 import MovieDetail from '../screens/MovieDetail';
 import Characters from '../screens/Characters';
 import CharacterDetail from '../screens/CharacterDetail';
+import HeaderBooks from '../components/HeaderBooks';
+import HeaderMovies from '../components/HeaderMovies';
+import HeaderCharacters from '../components/HeaderCharacters';
 
 const BookStack = createStackNavigator();
 
 function BookStackScreen() {
   return (
     <BookStack.Navigator>
-      <BookStack.Screen name="BooksScreen" component={Books} />
-      <BookStack.Screen name="BookDetail" component={BookDetail} />
+      <BookStack.Screen name="BooksScreen" component={Books} options={{header: (props) => <HeaderBooks {...props} />}} />
+      <BookStack.Screen name="BookDetail" component={BookDetail} options={{header: (props) => <HeaderBooks {...props} />}} />
     </BookStack.Navigator>
   );
 }
@@ -28,8 +31,8 @@ const MovieStack = createStackNavigator();
 function MovieStackScreen() {
   return (
     <MovieStack.Navigator>
-      <MovieStack.Screen name="MoviesScreen" component={Movies} />
-      <MovieStack.Screen name="MovieDetail" component={MovieDetail} />
+      <MovieStack.Screen name="MoviesScreen" component={Movies} options={{header: (props) => <HeaderMovies {...props} />}} />
+      <MovieStack.Screen name="MovieDetail" component={MovieDetail} options={{header: (props) => <HeaderMovies {...props} />}} />
     </MovieStack.Navigator>
   );
 }
@@ -39,8 +42,8 @@ const CharacterStack = createStackNavigator();
 function CharacterStackScreen() {
   return (
     <CharacterStack.Navigator>
-      <CharacterStack.Screen name="CharactersScreen" component={Characters} />
-      <CharacterStack.Screen name="CharacterDetail" component={CharacterDetail} />
+      <CharacterStack.Screen name="CharactersScreen" component={Characters} options={{header: (props) => <HeaderCharacters {...props} />}} />
+      <CharacterStack.Screen name="CharacterDetail" component={CharacterDetail} options={{header: (props) => <HeaderCharacters {...props} />}} />
     </CharacterStack.Navigator>
   );
 }

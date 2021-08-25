@@ -22,6 +22,7 @@ const screen = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
+    marginTop: screen.height*0.1
   },
   bgimage: {
     flex: 1,

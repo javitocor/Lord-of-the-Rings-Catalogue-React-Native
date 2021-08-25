@@ -5,5 +5,6 @@ export default {
   blue: '#4F6D7A',
   textLight: '#797979',
   offWhite: '#F0F0F0',
-  black: 'black'
+  black: 'black',
+  yellow: 'yellow'
 };

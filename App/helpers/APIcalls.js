@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import 'regenerator-runtime/runtime';
 import Constants from "expo-constants";
 import { BASE_URL } from '../constants/constants';
@@ -38,7 +39,7 @@ export const AllCall = (route) => async dispatch => {
   }
 };
 
-export const SingleCall = (id, route) => async dispatch => {
+export const SingleCall = (route, id) => async dispatch => {
   const Url = `${BASE_URL + route}`;
   try {
     if(route==='book'){

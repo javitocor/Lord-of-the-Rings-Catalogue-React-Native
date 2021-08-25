@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     height: screen.height * 1,
+    marginTop: screen.height*0.1
   },
   bgimage: {
     flex: 1,

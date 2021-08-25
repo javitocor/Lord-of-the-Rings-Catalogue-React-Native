@@ -22,6 +22,7 @@ const screen = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
+    marginTop: screen.height*0.1
   },
   bgimage: {
     flex: 1,
@@ -67,7 +68,7 @@ const Movies = (props) => {
                 <View style={styles.itemsContainer}>
                   {moviesList && moviesList.map(item =>{
                 return (
-                  <MovieDisplay name={item.name} onButtonPress={() => navigation.navigate('MovieDetail', {title:item.name, id: item._id})} />
+                  <MovieDisplay key={item._id} name={item.name} onButtonPress={() => navigation.navigate('MovieDetail', {title:item.name, id: item._id})} />
               )})}
                 </View>
               </ScrollView>
