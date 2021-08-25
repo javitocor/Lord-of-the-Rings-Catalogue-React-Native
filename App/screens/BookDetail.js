@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet, 
@@ -7,13 +7,16 @@ import {
   ImageBackground,
   Dimensions,
   Text,
-  Image
+  Image,
+  FlatList
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {SingleCall} from '../helpers/APIcalls';
+import {SingleCall, AllCall} from '../helpers/APIcalls';
 import displayBookImage from '../helpers/displayBookImage';
+import BookChapters from '../components/BookChapters';
+import getChapters from '../helpers/getChapters';
 
 import colors from '../constants/colors';
 
@@ -52,17 +55,28 @@ const styles = StyleSheet.create({
     width: '100%',
     height: undefined,
     aspectRatio: 1,
+    marginBottom: 15
   },
 });
 
 const BookDetail = (props) => {
-  const {getSingleBook} = props;
+  const {getSingleBook, getAllChapters} = props;
   const {book} = props.books; 
   const {id} = props.route.params;
+  const [selectedChapters, setSelectedChapters]= useState([]);
 
   useEffect(() => {
-    getSingleBook('book', id);
-  }, []);
+    (async () => {
+      try {
+       const data = await getSingleBook('book', id);
+       const dataChapters = await getAllChapters('chapter');
+       const selected = await getChapters(dataChapters.docs, id)
+       setSelectedChapters(selected);
+      } catch (error) {
+        console.log(error)
+      }           
+    })();  
+  },[]);
 
   return (
     <View style={styles.container}>
@@ -73,6 +87,10 @@ const BookDetail = (props) => {
             <View style={styles.content}>
               <Text style={styles.text}>{book.name}</Text>
               <Image source={displayBookImage(book.name)} resizeMode="contain" style={styles.image} />
+              <FlatList                
+                data={selectedChapters}
+                renderItem={({ item }) => (<BookChapters key={item} item={item} />)}
+              />
             </View>
           )}
       </ImageBackground>
@@ -85,8 +103,10 @@ BookDetail.propTypes = {
     error: PropTypes.object,
     pending: PropTypes.bool,
     book: PropTypes.object,
+    chapters: PropTypes.array
   }).isRequired,
   getSingleBook: PropTypes.func.isRequired,
+  getAllChapters: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -94,11 +114,13 @@ const mapStateToProps = state => ({
     error: state.books.error,
     book: state.books.book,
     pending: state.books.pending,
+    chapters: state.books.chapters
   },
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getSingleBook: SingleCall,
+  getAllChapters: AllCall,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);

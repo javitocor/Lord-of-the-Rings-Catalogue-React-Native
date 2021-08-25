@@ -16,7 +16,9 @@ export const AllCall = (route) => async dispatch => {
       dispatch(fromMovies.getAllMoviesPending());
     } else if (route==='character'){
       dispatch(fromCharacters.getAllCharactersPending());
-    }    
+    } else if (route==='chapter'){
+      dispatch(fromBooks.getAllChaptersPending());
+    }        
 
     const response = await fetch(Url, { mode: 'cors', headers: {'Authorization': `Bearer ${Constants.manifest.extra.APITOKEN}`}});
     const data = await response.json();
@@ -26,6 +28,8 @@ export const AllCall = (route) => async dispatch => {
       dispatch(fromMovies.getAllMovies(data));
     } else if (route==='character'){
       dispatch(fromCharacters.getAllCharacters(data));
+    } else if (route==='chapter'){
+      dispatch(fromBooks.getAllChapters(data));
     }     
     return data;
   } catch (error) {
@@ -35,6 +39,8 @@ export const AllCall = (route) => async dispatch => {
       dispatch(fromMovies.getAllMoviesError(error));
     } else if (route==='character'){
       dispatch(fromCharacters.getAllCharactersError(error));
+    } else if (route==='chapter'){
+      dispatch(fromBooks.getAllChaptersError(error));
     }    
   }
 };

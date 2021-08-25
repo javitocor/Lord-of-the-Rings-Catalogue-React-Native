@@ -5,6 +5,7 @@ export const initialStateBooks = {
   pending: false,
   booksList: [],
   book: {},
+  chapters: [],
 };
 
 export const GET_SINGLE_BOOK = 'GET_SINGLE_BOOK';
@@ -13,6 +14,9 @@ export const GET_SINGLE_BOOK_ERROR = 'GET_SINGLE_BOOK_ERROR';
 export const GET_ALL_BOOKS = 'GET_ALL_BOOKS';
 export const GET_ALL_BOOKS_PENDING = 'GET_ALL_BOOKS_PENDING';
 export const GET_ALL_BOOKS_ERROR = 'GET_ALL_BOOKS_ERROR';
+export const GET_ALL_CHAPTERS = 'GET_ALL_CHAPTERS';
+export const GET_ALL_CHAPTERS_PENDING = 'GET_ALL_CHAPTERS_PENDING';
+export const GET_ALL_CHAPTERS_ERROR = 'GET_ALL_CHAPTERS_ERROR';
 
 export const initialStateMovies = {
   error: null,

@@ -2,6 +2,7 @@ import {
   initialStateBooks,
   GET_SINGLE_BOOK, GET_SINGLE_BOOK_PENDING, GET_SINGLE_BOOK_ERROR,
   GET_ALL_BOOKS, GET_ALL_BOOKS_PENDING, GET_ALL_BOOKS_ERROR,
+  GET_ALL_CHAPTERS, GET_ALL_CHAPTERS_PENDING, GET_ALL_CHAPTERS_ERROR,
 } from '../constants/constants';
 
 const bookReducer = (state = initialStateBooks, action) => {
@@ -40,6 +41,23 @@ const bookReducer = (state = initialStateBooks, action) => {
         pending: false,
         error: action.error,
       };
+      case GET_ALL_CHAPTERS:
+        return {
+          ...state,
+          pending: false,
+          chapters: action.chapters.docs,
+        };
+      case GET_ALL_CHAPTERS_PENDING:
+        return {
+          ...state,
+          pending: true,
+        };
+      case GET_ALL_CHAPTERS_ERROR:
+        return {
+          ...state,
+          pending: false,
+          error: action.error,
+        };
     default:
       return state;
   }

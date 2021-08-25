@@ -30,3 +30,17 @@ export const getSingleBookError = error => ({
   type: GET_SINGLE_BOOK_ERROR,
   error,
 });
+
+export const getAllChapters = chapters => ({
+  type: GET_ALL_BOOKS,
+  chapters,
+});
+
+export const getAllChaptersPending = () => ({
+  type: GET_ALL_BOOKS_PENDING,
+});
+
+export const getAllChaptersError = error => ({
+  type: GET_ALL_BOOKS_ERROR,
+  error,
+});
